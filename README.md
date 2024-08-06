@@ -1,15 +1,26 @@
 # `segment-anything-2`を試す
 
 ## はじめに
+Metaは2024年7月29日に、`Segment Anything Model 2`を発表しました。
 
+Introducing Meta Segment Anything Model 2 (SAM 2)
+https://ai.meta.com/sam2/
+
+ここでは公式GitHubに用意されているノートブックのうち、画像内の自動マスク生成を試したいので、`Automatically generating object masks with SAM`を参考にします。
+
+以下の画像は出力の一例です。
+
+![](assets/eye-catch.png)
 
 ## インストール手順
 インストールは[GitHubの公式ページ](https://github.com/facebookresearch/segment-anything-2?tab=readme-ov-file#installation)を参考に行います。
 
 ```bash
-terms@terms:~/ドキュメント/ mkdir segment-anything-2
-terms@terms:~/ドキュメント/ cd segment-anything-2
-terms@terms:~/ドキュメント/segment-anything-2$ git clone https://github.com/facebookresearch/segment-anything-2.git
+user@user:~/ドキュメント/ mkdir segment-anything-2
+
+user@user:~/ドキュメント/ cd segment-anything-2
+
+user@user:~/ドキュメント/segment-anything-2$ git clone https://github.com/facebookresearch/segment-anything-2.git
 Cloning into 'segment-anything-2'...
 remote: Enumerating objects: 320, done.
 remote: Counting objects: 100% (49/49), done.
@@ -17,11 +28,16 @@ remote: Compressing objects: 100% (36/36), done.
 remote: Total 320 (delta 20), reused 13 (delta 13), pack-reused 271
 Receiving objects: 100% (320/320), 42.93 MiB | 10.95 MiB/s, done.
 Resolving deltas: 100% (27/27), done.
-terms@terms:~/ドキュメント/segment-anything-2/segment-anything-2$ python  -V
+
+user@user:~/ドキュメント/segment-anything-2/segment-anything-2$ python  -V
 Python 3.10.12
-terms@terms:~/ドキュメント/segment-anything-2/segment-anything-2$ python -m venv .venv
-terms@terms:~/ドキュメント/segment-anything-2/segment-anything-2$ . .venv/bin/activate
-(.venv) terms@terms:~/ドキュメント/segment-anything-2/segment-anything-2$ pip install -U pip setuptools wheel
+
+# 仮想環境を構築
+user@user:~/ドキュメント/segment-anything-2/segment-anything-2$ python -m venv .venv
+
+user@user:~/ドキュメント/segment-anything-2/segment-anything-2$ . .venv/bin/activate
+
+(.venv) user@user:~/ドキュメント/segment-anything-2/segment-anything-2$ pip install -U pip setuptools wheel
 Requirement already satisfied: pip in ./.venv/lib/python3.10/site-packages (22.0.2)
 Collecting pip
   Downloading pip-24.2-py3-none-any.whl (1.8 MB)
@@ -43,10 +59,15 @@ Installing collected packages: wheel, setuptools, pip
     Uninstalling pip-22.0.2:
       Successfully uninstalled pip-22.0.2
 Successfully installed pip-24.2 setuptools-72.1.0 wheel-0.44.0
-(.venv) terms@terms:~/ドキュメント/segment-anything-2/segment-anything-2$ pip install -e  .
+
+(.venv) user@user:~/ドキュメント/segment-anything-2/segment-anything-2$ pip install -e  .
 # (省略)
-(.venv) terms@terms:~/ドキュメント/segment-anything-2/segment-anything-2$ cd checkpoints/
-(.venv) terms@terms:~/ドキュメント/segment-anything-2/segment-anything-2/checkpoints$ ./download_ckpts.sh 
+
+(.venv) user@user:~/ドキュメント/segment-anything-2/segment-anything-2$ cd checkpoints/
+
+
+# `download_ckpts.sh`を実行してモデルをダウンロードする
+(.venv) user@user:~/ドキュメント/segment-anything-2/segment-anything-2/checkpoints$ ./download_ckpts.sh 
 Downloading sam2_hiera_tiny.pt checkpoint...
 --2024-08-05 15:34:58--  https://dl.fbaipublicfiles.com/segment_anything_2/072824/sam2_hiera_tiny.pt
 dl.fbaipublicfiles.com (dl.fbaipublicfiles.com) をDNSに問いあわせています... 54.239.168.70, 54.239.168.51, 54.239.168.2, ...
@@ -64,10 +85,12 @@ sam2_hiera_tiny.pt                            46%[==============================
 
 ![](assets/2024-08-05-15-45-46.png)
 
-後のノートブック実行の際、`matplotlib`, `cv2`がインストールされていないとエラーが発生しますので、`matplotlib`をインストールしておきます。
-```
-(.venv) terms@terms:~/ドキュメント/segment-anything-2/segment-anything-2$ pip install matplotlib opencv-python
-```
+> ![NOTE]
+> 後のノートブック実行の際、`matplotlib`, `cv2`がインストールされていないとエラーが発生しますので、`matplotlib`をインストールしておきます。
+> 
+> ```
+> (.venv) user@user:~/ドキュメント/segment-anything-2/segment-anything-2$ pip install matplotlib opencv-python
+> ```
 
 ## `Automatically generating object masks with SAM`
 ここでは`画像内の自動マスク生成`を試したいので、[`Automatically generating object masks with SAM`](https://github.com/facebookresearch/segment-anything-2/blob/main/notebooks/automatic_mask_generator_example.ipynb)を参考にします。
