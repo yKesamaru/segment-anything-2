@@ -60,7 +60,7 @@ Graphics:
 
 例えばわたしの場合、`segment-anything-2`プロジェクト内の`transformer.py`22行目で以下の警告が出力されました。
 ```bash
-/home/terms/ドキュメント/segment-anything-2/segment-anything-2/sam2/modeling/sam/transformer.py:22: UserWarning: Flash Attention is disabled as it requires a GPU with Ampere (8.0) CUDA capability.
+/home/user/ドキュメント/segment-anything-2/segment-anything-2/sam2/modeling/sam/transformer.py:22: UserWarning: Flash Attention is disabled as it requires a GPU with Ampere (8.0) CUDA capability.
   OLD_GPU, USE_FLASH_ATTN, MATH_KERNEL_ON = get_sdpa_settings()
 ```
 `Flash Attention`が無効化される旨が出力されています。`Transformerモデル`の高速化技術が無効化されます。
