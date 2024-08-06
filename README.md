@@ -10,7 +10,7 @@ https://ai.meta.com/sam2/
 
 以下の画像は出力の一例です。
 
-![](assets/eye-catch.png)
+![](https://raw.githubusercontent.com/yKesamaru/segment-anything-2/master/assets/eye-catch.png)
 
 
 ## 環境
@@ -61,7 +61,7 @@ https://github.com/yKesamaru/segment-anything-2/blob/8ea108d1ae894c1e6b6d10dca58
 
 ダウンロードされたモデル群
 
-![](assets/2024-08-05-15-45-46.png)
+![](https://raw.githubusercontent.com/yKesamaru/segment-anything-2/master/assets/2024-08-05-15-45-46.png)
 
 モデルの大きさは以下の通り。
 ```bash
@@ -71,7 +71,6 @@ sam2_hiera_base_plus.pt 309M
 sam2_hiera_large.pt 857M
 sam2_hiera_small.pt 176M
 sam2_hiera_tiny.pt 149M
-
 ```
 
 > ![NOTE]
@@ -111,8 +110,9 @@ sam2_hiera_tiny.pt 149M
 
 ## 実行結果
 - 元画像
-
+  ![](https://raw.githubusercontent.com/yKesamaru/segment-anything-2/master/assets/original.png)
 - 処理後の画像
+  ![](https://raw.githubusercontent.com/yKesamaru/segment-anything-2/master/assets/eye-catch.png)
 
 
 ## 最後に
